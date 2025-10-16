@@ -33,9 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="container py-10 body-12 flex flex-wrap items-center gap-4 justify-between" style={{color: 'var(--muted)'}}>
             <div>© {new Date().getFullYear()} Arkiv community</div>
             <div className="flex gap-4">
-              <a href="#" target="_blank" rel="noreferrer">Docs</a>
-              <a href="#" target="_blank" rel="noreferrer">Status</a>
-              <a href="#" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://docs.arkiv.network" target="_blank" rel="noreferrer">Docs</a>
+              <a href="https://status.arkiv.network" target="_blank" rel="noreferrer">Status</a>
+              <a href="https://github.com/arkiv-network" target="_blank" rel="noreferrer">GitHub</a>
             </div>
           </div>
         </footer>
