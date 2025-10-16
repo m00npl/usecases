@@ -10,7 +10,7 @@
   ],
   "status": "live",
   "liveUrl": "https://usecases.arkiv.network",
-  "repoUrl": "https://github.com/moonplkr/usecases",
+  "repoUrl": "https://github.com/m00npl/usecases",
   "chains": [
     "arkiv-holesky"
   ],
