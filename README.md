@@ -1,4 +1,4 @@
-# Built with Golem DB — Portfolio Starter
+# Built with Arkiv — Portfolio Starter
 
 Next.js (App Router) + Tailwind starter to showcase projects using **Golem DB**.
 
