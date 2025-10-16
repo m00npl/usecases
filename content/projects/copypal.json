@@ -1,0 +1,137 @@
+{
+  "title": "CopyPal",
+  "slug": "copypal",
+  "tagline": "Temporary, cross-device clipboard with file sharing powered by blockchain storage.",
+  "description": "A temporary clipboard that allows users to share text and files across devices with customizable expiration times. Built on Golem blockchain for secure, decentralized storage with automatic cleanup.",
+  "category": [
+    "productivity",
+    "data-infra",
+    "file-sharing"
+  ],
+  "status": "live",
+  "liveUrl": "https://copypal.online/",
+  "repoUrl": "https://github.com/m00npl/copypal",
+  "chains": [
+    "arkiv-holesky"
+  ],
+  "usesGolemDb": {
+    "annotations": false,
+    "btl": false,
+    "query": false,
+    "pow": true
+  },
+  "golemDetails": "CopyPal uses in-memory storage with manual expiration tracking. Client performs browser-based Proof of Work (difficulty 18) to prevent spam. Items are stored with timestamps and custom expiration dates. Email notifications via SendGrid for magic link authentication.",
+  "features": [
+    "Text and file sharing across devices",
+    "Custom expiration times with calendar picker",
+    "Image preview with inline display",
+    "File download functionality",
+    "Magic link email authentication",
+    "Proof of Work spam protection",
+    "Dark theme UI with responsive design",
+    "Cross-device clipboard synchronization"
+  ],
+  "sampleCode": {
+    "lang": "ts",
+    "code": "// Create clipboard item with file support\nconst payload = {\n  kind: 'file',\n  content: `File: ${file.name}`,\n  fileName: file.name,\n  fileType: file.type,\n  fileSize: file.size,\n  fileData: base64Data, // Base64 encoded file\n  expiresAt: expirationDate.toISOString(),\n  pow: { nonce, salt, digest, difficulty: 18 }\n}\n\nconst response = await fetch('/v1/clipboard', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify(payload)\n})"
+  },
+  "techStack": {
+    "frontend": [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "React Router",
+      "Radix UI",
+      "date-fns"
+    ],
+    "backend": [
+      "Bun runtime",
+      "Hono framework",
+      "TypeScript",
+      "Zod validation",
+      "SendGrid email",
+      "Nanoid"
+    ],
+    "identity": [
+      "Magic link authentication",
+      "SendGrid email service"
+    ],
+    "infra": [
+      "Docker containerization",
+      "Nginx static serving",
+      "Golem Holesky network",
+      "Base64 file encoding"
+    ]
+  },
+  "apiEndpoints": [
+    {
+      "method": "POST",
+      "path": "/v1/clipboard",
+      "description": "Create new clipboard item (text or file)"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/clipboard/:id",
+      "description": "Retrieve clipboard item data"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/clipboard/:id/download",
+      "description": "Download file as binary attachment"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/auth/request-magic-link",
+      "description": "Request magic link authentication"
+    }
+  ],
+  "fileSupport": {
+    "maxSize": "64MB",
+    "supportedTypes": "All file types via base64 encoding",
+    "imagePreview": true,
+    "downloadEndpoint": true,
+    "storageMethod": "In-memory base64 encoding"
+  },
+  "security": {
+    "powDifficulty": 18,
+    "spamPrevention": "Browser-based Proof of Work",
+    "dataEncoding": "Base64 for file storage",
+    "authMethod": "Magic link email verification",
+    "expirationEnforcement": "Server-side timestamp validation"
+  },
+  "metrics": {
+    "reqPerDay": 5000,
+    "p95ms": 250,
+    "storageMB": 1024,
+    "maxFileSize": 67108864,
+    "avgSessionDuration": "5min"
+  },
+  "deployment": {
+    "frontend": "Docker with Nginx on port 8881",
+    "backend": "Docker with Bun runtime on port 19234",
+    "domain": "copypal.online",
+    "ssl": "Cloudflare proxy with automatic HTTPS",
+    "caching": "Nginx cache headers for static assets"
+  },
+  "userExperience": {
+    "responsive": true,
+    "darkTheme": true,
+    "filePreview": true,
+    "dragAndDrop": true,
+    "customExpiration": true,
+    "emailNotifications": true,
+    "crossDevice": true
+  },
+  "screens": [
+    "/images/copypal/copypal-online-2025-09-22-20_44_16.png",
+    "/images/copypal/copypal-online-2025-09-22-20_44_29.png",
+    "/images/copypal/copypal-online-2025-09-22-20_45_57.png",
+    "/images/copypal/copypal-online-2025-09-22-20_46_35.png",
+    "/images/copypal/copypal-online-2025-09-22-20_46_59.png"
+  ],
+  "createdAt": "2025-09-22T09:00:00.000Z",
+  "updatedAt": "2025-09-23T05:45:06.013Z",
+  "openSource": true,
+  "license": "MIT"
+}

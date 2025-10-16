@@ -1,0 +1,157 @@
+{
+  "title": "Arkiv Portfolio",
+  "slug": "portfolio",
+  "tagline": "Showcase portfolio of real applications built with Arkiv - featuring smart caching, blockchain storage, and decentralized image hosting.",
+  "description": "A comprehensive portfolio showcase featuring projects built with Arkiv design system and blockchain technology. The main gallery displays project cards with screenshots, descriptions, and filtering capabilities by categories (analytics, productivity, design-tools) and Arkiv features (annotations, BTL, query, storage, POW). Each project has a dedicated detail page showing overview, technical implementation, code samples, tech stack breakdown, and performance metrics. Features responsive design with dark/light mode toggle and clean typography using IBM Plex Mono.",
+  "category": [
+    "portfolio",
+    "data-infra",
+    "showcase"
+  ],
+  "status": "live",
+  "liveUrl": "https://usecases.arkiv.network",
+  "repoUrl": "https://github.com/moonplkr/usecases",
+  "chains": [
+    "arkiv-holesky"
+  ],
+  "usesGolemDb": {
+    "annotations": true,
+    "btl": true,
+    "query": true,
+    "storage": true,
+    "pow": false
+  },
+  "golemDetails": "Portfolio stores project metadata as JSON entities with 2-year BTL (730 days × 43200 blocks). Uses string annotations for project identification, filtering, and versioning. Implements smart local caching with 24h revalidation. Falls back through hierarchy: Cache → Arkiv → Local Files. Images uploaded to imagedb.online with matching 2-year BTL.",
+  "features": [
+    "Project data storage on Arkiv with 2-year persistence",
+    "Smart local cache with daily revalidation and change detection",
+    "Hierarchical data loading: Cache → Arkiv → Local Files",
+    "Image storage via imagedb.online with 2-year BTL",
+    "Modal image viewer with keyboard navigation and thumbnails",
+    "Individual badges for each Arkiv feature used",
+    "Docker containerization with environment variable support",
+    "Migration script for JSON to Arkiv data transfer",
+    "Responsive design with dark theme",
+    "TypeScript for type safety"
+  ],
+  "sampleCode": {
+    "lang": "ts",
+    "code": "// Store project data with 2-year BTL\nconst btl = 365 * 2 * 43200; // 2 years in blocks\nconst projectData = {\n  projectId: project.slug,\n  data: project,\n  updatedAt: new Date().toISOString()\n};\n\nconst result = await writeClient.createEntities([{\n  btl: btl,\n  data: Buffer.from(JSON.stringify(projectData), 'utf8'),\n  stringAnnotations: [\n    { key: 'type', value: 'project_data' },\n    { key: 'project_id', value: project.slug },\n    { key: 'updated_at', value: new Date().toISOString() }\n  ],\n  numericAnnotations: []\n}]);\n\n// Smart cache with change detection\nconst cached = await cache.get('all-projects');\nif (cached) return cached;\n\nconst golemProjects = await golemStorage.getAllProjects();\nif (golemProjects.length > 0) {\n  await cache.set('all-projects', golemProjects);\n  return golemProjects;\n}"
+  },
+  "techStack": {
+    "frontend": [
+      "Next.js 14 App Router",
+      "React 18",
+      "TypeScript",
+      "Tailwind CSS",
+      "Server Components",
+      "Static Generation"
+    ],
+    "backend": [
+      "Bun runtime",
+      "Node.js APIs",
+      "Arkiv SDK",
+      "File System Cache",
+      "Buffer handling"
+    ],
+    "storage": [
+      "Arkiv Holesky testnet",
+      "Local file cache",
+      "ImageDB.online integration",
+      "JSON fallback storage"
+    ],
+    "infra": [
+      "Docker containerization",
+      "Docker Compose orchestration",
+      "nginx-proxy-manager",
+      "Environment variable config"
+    ]
+  },
+  "apiEndpoints": [
+    {
+      "method": "GET",
+      "path": "/",
+      "description": "Home page with project gallery and filtering"
+    },
+    {
+      "method": "GET",
+      "path": "/[slug]",
+      "description": "Individual project detail page with modal images"
+    },
+    {
+      "method": "GET",
+      "path": "/submit",
+      "description": "Project submission helper page"
+    }
+  ],
+  "golemDbIntegration": {
+    "chainId": 60138453025,
+    "rpcUrl": "https://kaolin.hoodi.arkiv.network/rpc",
+    "wsUrl": "wss://https://kaolin.hoodi.arkiv.network/rpc/ws",
+    "entityStructure": {
+      "btl": "2 years (730 days × 43200 blocks/day)",
+      "data": "JSON project metadata as UTF-8 Buffer",
+      "stringAnnotations": [
+        "type: 'project_data'",
+        "project_id: unique project identifier",
+        "updated_at: ISO timestamp for versioning"
+      ]
+    },
+    "queryPattern": "Filter by type and project_id, sort by updated_at for latest version",
+    "cachingStrategy": "24h local cache with change detection via lastModified comparison"
+  },
+  "cacheStrategy": {
+    "location": ".cache/ directory (gitignored)",
+    "ttl": "24 hours from creation",
+    "invalidation": "Only when remote data lastModified > cached lastModified",
+    "fallbackChain": "Cache → Arkiv → Local JSON files",
+    "performance": "~0ms cache hit, ~200ms Arkiv, ~50ms local files"
+  },
+  "imageHandling": {
+    "storage": "imagedb.online with 2-year BTL",
+    "upload": "Migration script converts local paths to imagedb URLs",
+    "modal": "Full-screen viewer with keyboard navigation",
+    "thumbnails": "Grid view with hover effects and zoom indicators",
+    "formats": "PNG, JPG with responsive sizing"
+  },
+  "metrics": {
+    "reqPerDay": 1000,
+    "p95ms": 200,
+    "storageMB": 512,
+    "cacheHitRate": "85%",
+    "avgPageLoad": "800ms"
+  },
+  "deployment": {
+    "container": "Docker with Next.js production build",
+    "port": "8850 (external) → 3000 (internal)",
+    "domain": "moon.dev.golem.network",
+    "envVars": "Arkiv credentials via .env file",
+    "buildProcess": "Multi-stage Docker build with bun install and next build"
+  },
+  "userExperience": {
+    "responsive": true,
+    "darkTheme": true,
+    "modalViewer": true,
+    "keyboardNav": true,
+    "loadingStates": true,
+    "errorHandling": true,
+    "seoOptimized": true
+  },
+  "developmentTools": {
+    "scripts": {
+      "migrate:golem": "Migrate JSON data to Arkiv",
+      "dev": "Development server with hot reload",
+      "build": "Production build with static generation"
+    },
+    "typeScript": "Full type safety with Arkiv SDK integration",
+    "linting": "Built-in Next.js linting",
+    "dockerIgnore": "Optimized build context"
+  },
+  "screens": [
+    "/images/portfolio/portfolio-2025-09-26 o 22.59.33.png",
+    "/images/portfolio/portfolio-2025-09-26 o 22.59.45.png"
+  ],
+  "createdAt": "2025-09-19T00:00:00.000Z",
+  "openSource": true,
+  "license": "MIT"
+}

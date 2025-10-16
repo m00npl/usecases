@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  usecases:
+    image: moonplkr/usecases:latest
+    container_name: usecases
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - moon_golem_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.usecases.rule=Host(`usecases.golemdb.io`)"
+      - "traefik.http.routers.usecases.entrypoints=websecure"
+      - "traefik.http.routers.usecases.tls.certresolver=letsencrypt"
+      - "traefik.http.services.usecases.loadbalancer.server.port=3000"
+
+networks:
+  moon_golem_network:
+    external: true

@@ -1,0 +1,190 @@
+{
+  "title": "Umami Analytics - Arkiv Edition",
+  "slug": "umami",
+  "tagline": "Privacy-first web analytics with blockchain backup powered by Arkiv storage.",
+  "description": "Self-hosted web analytics platform that respects user privacy with no cookies or cross-site tracking. Features automatic data backup to Arkiv blockchain for decentralized storage and enhanced data security.",
+  "category": [
+    "analytics",
+    "data-infra",
+    "privacy"
+  ],
+  "status": "live",
+  "liveUrl": "https://umami.golemdb.io/",
+  "repoUrl": "https://github.com/umami-software/umami",
+  "chains": [
+    "arkiv-holesky"
+  ],
+  "usesGolemDb": {
+    "annotations": true,
+    "btl": true,
+    "query": true,
+    "pow": false
+  },
+  "golemDetails": "Umami Analytics syncs all website analytics data to Arkiv blockchain for backup and decentralization. Data includes pageviews, events, sessions, and website metadata. Uses smart annotations (type, source, website_id, timestamp) for efficient querying. BTL set to ~1,296,000 blocks (30 days) for automatic cleanup.",
+  "features": [
+    "Privacy-first analytics with no cookies",
+    "Real-time dashboard with key metrics",
+    "Cross-device and browser tracking",
+    "GDPR compliant data collection",
+    "Lightweight 2KB tracking script",
+    "Blockchain data backup to Arkiv",
+    "Multi-website management",
+    "Geographic and device analytics",
+    "Custom event tracking",
+    "Session duration monitoring",
+    "Traffic source analysis",
+    "Automated hourly sync to blockchain"
+  ],
+  "sampleCode": {
+    "lang": "js",
+    "code": "// Sync analytics data to Arkiv\nconst pageviewEntities = pageviews.map(row => ({\n  data: Buffer.from(JSON.stringify(row)),\n  btl: calculateBTL(30), // 30 days\n  stringAnnotations: [\n    { key: 'type', value: 'pageview' },\n    { key: 'source', value: 'umami' },\n    { key: 'website_id', value: row.website_id },\n    { key: 'url', value: row.url },\n    { key: 'timestamp', value: row.created_at }\n  ],\n  numericAnnotations: [\n    { key: 'umami_id', value: row.id },\n    { key: 'sync_time', value: Math.floor(Date.now() / 1000) }\n  ]\n}));\n\nconst receipts = await golemClient.createEntities(pageviewEntities);"
+  },
+  "techStack": {
+    "frontend": [
+      "Next.js 15",
+      "React 18",
+      "TypeScript",
+      "Tailwind CSS",
+      "Chart.js",
+      "Radix UI"
+    ],
+    "backend": [
+      "Next.js API routes",
+      "Node.js runtime",
+      "Prisma ORM",
+      "PostgreSQL database",
+      "Golem Base SDK"
+    ],
+    "identity": [
+      "Built-in user authentication",
+      "Session management",
+      "Role-based access control"
+    ],
+    "infra": [
+      "Docker Compose deployment",
+      "PostgreSQL 15 Alpine",
+      "Traefik reverse proxy",
+      "Static file server",
+      "Golem Holesky network"
+    ]
+  },
+  "apiEndpoints": [
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "description": "Authenticate user and get session token"
+    },
+    {
+      "method": "GET",
+      "path": "/api/websites",
+      "description": "List all configured websites"
+    },
+    {
+      "method": "POST",
+      "path": "/api/websites",
+      "description": "Create new website for tracking"
+    },
+    {
+      "method": "GET",
+      "path": "/api/websites/:id/stats",
+      "description": "Get analytics statistics for website"
+    },
+    {
+      "method": "POST",
+      "path": "/api/send",
+      "description": "Receive tracking data from websites"
+    },
+    {
+      "method": "GET",
+      "path": "/script.js",
+      "description": "Serve tracking script for websites"
+    }
+  ],
+  "trackingSupport": {
+    "scriptSize": "2KB",
+    "supportedEvents": "Pageviews, custom events, sessions",
+    "cookieless": true,
+    "realTime": true,
+    "storageMethod": "PostgreSQL database + Arkiv backup"
+  },
+  "security": {
+    "privacy": "No cookies, no cross-site tracking",
+    "gdprCompliant": true,
+    "dataAnonymization": "IP address hashing",
+    "authMethod": "Username/password with session tokens",
+    "blockchainBackup": "Encrypted data storage on Arkiv"
+  },
+  "metrics": {
+    "reqPerDay": 50000,
+    "p95ms": 150,
+    "storageMB": 10240,
+    "trackingScriptSize": 2048,
+    "avgSessionDuration": "3min"
+  },
+  "deployment": {
+    "umami": "Docker with Next.js on port 3333",
+    "database": "PostgreSQL 15 Alpine on port 5432",
+    "static": "Static file server on port 8080",
+    "domain": "umami.golemdb.io",
+    "ssl": "Let's Encrypt via Traefik",
+    "routing": "Traefik reverse proxy with path-based routing"
+  },
+  "userExperience": {
+    "responsive": true,
+    "darkTheme": true,
+    "realTimeDashboard": true,
+    "multiWebsite": true,
+    "customDateRanges": true,
+    "exportData": true,
+    "geographicMaps": true,
+    "deviceBreakdowns": true
+  },
+  "blockchainIntegration": {
+    "syncFrequency": "Hourly",
+    "dataTypes": ["pageviews", "events", "sessions", "websites"],
+    "btlDays": 30,
+    "blocksBtl": 1296000,
+    "annotations": {
+      "string": ["type", "source", "website_id", "website_domain", "url", "event_name", "timestamp"],
+      "numeric": ["umami_id", "sync_time"]
+    },
+    "queryCapabilities": "Filter by type, website, date range using annotations"
+  },
+  "configuredWebsites": [
+    {
+      "name": "CopyPal",
+      "domain": "copypal.online",
+      "websiteId": "cf28d8c8-e917-4972-ae92-b7c42b4760ba"
+    },
+    {
+      "name": "DrawioDB",
+      "domain": "drawiodb.online",
+      "websiteId": "bbcca777-bf5c-49a5-9074-5f44bc84e229"
+    },
+    {
+      "name": "FileDB",
+      "domain": "filedb.online",
+      "websiteId": "fddc06d5-1489-4493-b34f-c8723438121d"
+    },
+    {
+      "name": "ImageDB",
+      "domain": "imagedb.online",
+      "websiteId": "c02ef8a8-53fd-477e-a89d-e3e12ced5d29"
+    },
+    {
+      "name": "WebDB",
+      "domain": "webdb.site",
+      "websiteId": "4f09b8c5-f722-4fc1-8793-d50c1a7e4417"
+    }
+  ],
+  "screens": [
+    "/images/umami/umami-2025-09-23 o 23.55.47.png",
+    "/images/umami/umami-2025-09-23 o 23.56.04.png",
+    "/images/umami/umami-2025-09-23 o 23.56.31.png",
+    "/images/umami/umami-2025-09-23 o 23.56.51.png"
+  ],
+  "createdAt": "2025-09-23T21:00:00.000Z",
+  "updatedAt": "2025-09-23T21:49:00.000Z",
+  "openSource": true,
+  "license": "MIT"
+}

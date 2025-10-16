@@ -1,0 +1,158 @@
+{
+  "title": "FilesDB",
+  "slug": "filedb",
+  "tagline": "Universal file storage middleware with chunking for Arkiv integration.",
+  "description": "A file chunking middleware that splits large files into safe-sized chunks, stores them with integrity verification, and serves them back as single files. Built for seamless Arkiv integration with support for any file type up to 50MB.",
+  "category": [
+    "data-infra",
+    "file-sharing",
+    "storage"
+  ],
+  "status": "live",
+  "liveUrl": "https://filedb.online/",
+  "repoUrl": "https://github.com/m00npl/filedb",
+  "chains": [
+    "arkiv-holesky"
+  ],
+  "usesGolemDb": {
+    "annotations": false,
+    "btl": true,
+    "query": false,
+    "pow": false
+  },
+  "golemDetails": "FilesDB implements chunking middleware ready for Arkiv integration. Files are split into 64KB chunks with SHA-256 checksums for integrity verification. Currently uses in-memory storage with BTL (Better Than Life) expiration simulation. Architecture designed for seamless Arkiv backend replacement.",
+  "features": [
+    "Universal file type support (documents, images, videos, archives)",
+    "Automatic 64KB chunking for large files up to 50MB",
+    "SHA-256 integrity verification for all chunks",
+    "Idempotent uploads with session management",
+    "Configurable BTL with automatic expiration",
+    "RESTful API with comprehensive endpoints",
+    "Lightweight JavaScript SDK (2KB)",
+    "Rate limiting and quota management",
+    "File metadata and search capabilities",
+    "Live demo with drag-and-drop interface"
+  ],
+  "sampleCode": {
+    "lang": "ts",
+    "code": "// Upload file with chunking\nconst formData = new FormData();\nformData.append('file', file);\n\nconst response = await fetch('/files', {\n  method: 'POST',\n  body: formData,\n  headers: {\n    'Idempotency-Key': 'unique-key-123',\n    'BTL-Days': '7'\n  }\n});\n\nconst result = await response.json();\n// { file_id: 'uuid', message: 'Upload successful' }\n\n// Download file\nconst fileResponse = await fetch(`/files/${result.file_id}`);\nconst fileBlob = await fileResponse.blob();"
+  },
+  "techStack": {
+    "frontend": [
+      "Vanilla HTML5",
+      "Tailwind CSS",
+      "Prism.js",
+      "Custom JavaScript SDK",
+      "Responsive design"
+    ],
+    "backend": [
+      "Bun runtime",
+      "Hono framework",
+      "TypeScript",
+      "Crypto module",
+      "Buffer handling"
+    ],
+    "identity": [
+      "Header-based user identification",
+      "Session-based quota tracking"
+    ],
+    "infra": [
+      "Docker containerization",
+      "Multi-stage builds",
+      "Static file serving",
+      "Chunked file storage",
+      "In-memory data structures"
+    ]
+  },
+  "apiEndpoints": [
+    {
+      "method": "POST",
+      "path": "/files",
+      "description": "Upload file with automatic chunking"
+    },
+    {
+      "method": "GET",
+      "path": "/files/:file_id",
+      "description": "Download reassembled file"
+    },
+    {
+      "method": "GET",
+      "path": "/files/:file_id/info",
+      "description": "Get file metadata without download"
+    },
+    {
+      "method": "GET",
+      "path": "/files/by-extension/:ext",
+      "description": "List files by extension"
+    },
+    {
+      "method": "GET",
+      "path": "/files/by-type/:content_type",
+      "description": "List files by MIME type"
+    },
+    {
+      "method": "GET",
+      "path": "/quota",
+      "description": "Check storage quota and usage"
+    },
+    {
+      "method": "GET",
+      "path": "/status/:idempotency_key",
+      "description": "Check upload session status"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "description": "Service health check"
+    }
+  ],
+  "fileSupport": {
+    "maxSize": "50MB",
+    "supportedTypes": "Universal - documents, images, videos, archives, code files, binary",
+    "chunkSize": "64KB",
+    "integrityCheck": "SHA-256 checksums",
+    "storageMethod": "Chunked binary storage with metadata"
+  },
+  "security": {
+    "integrityVerification": "SHA-256 per chunk and full file",
+    "inputValidation": "File type and size validation",
+    "quotaEnforcement": "Per-user storage and upload limits",
+    "idempotencyKeys": "Duplicate upload prevention",
+    "expirationEnforcement": "Automatic BTL cleanup"
+  },
+  "metrics": {
+    "reqPerDay": 10000,
+    "p95ms": 150,
+    "storageMB": 2048,
+    "maxFileSize": 52428800,
+    "avgChunkCount": 12
+  },
+  "deployment": {
+    "application": "Docker with Bun runtime on port 3000",
+    "domain": "filedb.online",
+    "ssl": "Let's Encrypt with nginx proxy",
+    "networking": "Internal moon_golem_network",
+    "health": "Integrated health checks"
+  },
+  "userExperience": {
+    "responsive": true,
+    "darkTheme": false,
+    "filePreview": false,
+    "dragAndDrop": true,
+    "progressTracking": true,
+    "downloadLinks": true,
+    "metadataDisplay": true,
+    "sdkIntegration": true
+  },
+  "screens": [
+    "/images/filedb/filedb-2025-09-22 o 21.21.59.png",
+    "/images/filedb/filedb-2025-09-22 o 21.22.11.png",
+    "/images/filedb/filedb-2025-09-22 o 21.22.34.png",
+    "/images/filedb/filedb-2025-09-22 o 21.22.49.png",
+    "/images/filedb/filedb-main-2025-09-23T05-45-13.png"
+  ],
+  "createdAt": "2025-09-21T00:00:00.000Z",
+  "updatedAt": "2025-09-23T05:45:18.184Z",
+  "openSource": true,
+  "license": "MIT"
+}

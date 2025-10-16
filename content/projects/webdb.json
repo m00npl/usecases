@@ -1,0 +1,43 @@
+{
+  "title": "WebDB Static Hosting",
+  "slug": "webdb-hosting",
+  "tagline": "Immutable static hosting backed by Arkiv.",
+  "category": [
+    "data-infra"
+  ],
+  "status": "demo",
+  "liveUrl": "https://example.com/demo/webdb",
+  "repoUrl": "https://github.com/example/webdb",
+  "chains": [
+    "ethereum"
+  ],
+  "usesGolemDb": {
+    "storage": true,
+    "annotations": true
+  },
+  "golemDetails": "Stores site assets with content-addressed identifiers. Annotates artifacts for versioning and quick rollbacks.",
+  "sampleCode": {
+    "lang": "ts",
+    "code": "await db.chain('sites').insert({ id, files, annotations: ['site:'+siteId, 'version:'+version] })"
+  },
+  "techStack": {
+    "frontend": [
+      "Next.js"
+    ],
+    "backend": [
+      "Node"
+    ],
+    "infra": [
+      "Arkiv"
+    ]
+  },
+  "screens": [
+    "/images/webdb/webdb-2025-09-22 o 21.19.32.png",
+    "/images/webdb/webdb-2025-09-22 o 21.20.15.png",
+    "/images/webdb/webdb-2025-09-22 o 21.20.32.png",
+    "/images/webdb/webdb-2025-09-22 o 21.20.45.png",
+    "/images/webdb/webdb-2025-09-22 o 21.20.55.png",
+    "/images/webdb/webdb-2025-09-22 o 21.21.17.png"
+  ],
+  "createdAt": "2025-09-20T09:00:00.000Z"
+}

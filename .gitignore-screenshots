@@ -1,0 +1,11 @@
+# Screenshot files (uncomment to ignore auto-generated screenshots)
+# public/images/*-main-*.png
+# public/images/*-about-*.png
+# public/images/*-features-*.png
+# public/images/*-demo-*.png
+# public/images/*-docs-*.png
+
+# Keep manually added images
+# !public/images/manual-*
+# !public/images/hero-*
+# !public/images/placeholder.*

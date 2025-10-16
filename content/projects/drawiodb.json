@@ -1,0 +1,177 @@
+{
+  "title": "DrawIO DB",
+  "slug": "drawiodb",
+  "tagline": "Decentralized diagram editor with blockchain storage for permanent diagram preservation.",
+  "description": "A full-featured diagram editor built on DrawIO with Arkiv blockchain storage integration. Create flowcharts, network diagrams, and technical drawings while storing them permanently on-chain with cryptographic security and decentralized access.",
+  "category": [
+    "productivity",
+    "design-tools",
+    "data-infra",
+    "decentralized-storage"
+  ],
+  "status": "live",
+  "liveUrl": "https://drawiodb.online/",
+  "repoUrl": "https://github.com/m00npl/drawiodb",
+  "chains": [
+    "arkiv-holesky"
+  ],
+  "usesGolemDb": {
+    "annotations": true,
+    "btl": false,
+    "query": true,
+    "pow": false
+  },
+  "golemDetails": "DrawIO DB leverages Arkiv for permanent diagram storage with full metadata including title, author, creation timestamps, and content. Supports both read-only mode (MetaMask signing) and backend mode (server-side private key). Advanced querying capabilities for filtering diagrams by author, title, and content. Share functionality with public diagram links.",
+  "features": [
+    "Full DrawIO diagram editor integration",
+    "Permanent blockchain storage with Arkiv",
+    "Multiple authentication modes (MetaMask, custodial, guest)",
+    "Advanced search and filtering by author/title/content",
+    "Shareable public diagram links with custom URLs",
+    "Export to multiple formats (PNG, JPG, SVG, PDF, XML)",
+    "Comprehensive configuration management",
+    "Real-time diagram collaboration capabilities",
+    "Drag & drop Save As integration in DrawIO interface"
+  ],
+  "sampleCode": {
+    "lang": "js",
+    "code": "// Save diagram to Arkiv blockchain\nconst diagramData = {\n  title: 'Network Architecture',\n  author: 'user@example.com',\n  content: mxUtils.getXml(graph.getModel()),\n  isPublic: true,\n  description: 'Company network topology'\n};\n\nconst response = await fetch('/api/diagrams/export', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify(diagramData)\n});\n\nconst result = await response.json();\nconsole.log('Stored on-chain with ID:', result.id);"
+  },
+  "techStack": {
+    "frontend": [
+      "DrawIO (diagrams.net)",
+      "Vanilla JavaScript",
+      "Custom Arkiv plugin integration",
+      "MetaMask Web3 integration",
+      "Ethers.js v6",
+      "HTML5/CSS3"
+    ],
+    "backend": [
+      "Bun runtime",
+      "Hono framework",
+      "TypeScript",
+      "Golem Base SDK",
+      "Ethers.js",
+      "Crypto-JS",
+      "CORS middleware"
+    ],
+    "identity": [
+      "MetaMask wallet authentication",
+      "Custodial account system",
+      "Guest mode (read-only)",
+      "Multi-modal authentication flow"
+    ],
+    "infra": [
+      "Docker containerization",
+      "Multi-service architecture",
+      "Nginx reverse proxy",
+      "Golem Holesky testnet",
+      "SSL/TLS encryption"
+    ]
+  },
+  "apiEndpoints": [
+    {
+      "method": "POST",
+      "path": "/api/diagrams/export",
+      "description": "Export diagram to Arkiv blockchain storage"
+    },
+    {
+      "method": "GET",
+      "path": "/api/diagrams/import/:id",
+      "description": "Import diagram from blockchain by ID"
+    },
+    {
+      "method": "GET",
+      "path": "/api/diagrams/list",
+      "description": "List diagrams with filtering (author, title, content)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/diagrams/config",
+      "description": "Save user configuration preferences"
+    },
+    {
+      "method": "GET",
+      "path": "/api/diagrams/search",
+      "description": "Advanced search with query parameters"
+    },
+    {
+      "method": "GET",
+      "path": "/share/:token",
+      "description": "Access shared diagram via public link"
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "description": "Health check and service status"
+    }
+  ],
+  "diagramSupport": {
+    "maxSize": "128KB per diagram (Arkiv entity limit)",
+    "supportedFormats": "DrawIO XML, JSON, compressed XML",
+    "exportFormats": [
+      "PNG",
+      "JPG",
+      "SVG",
+      "PDF",
+      "XML",
+      "HTML"
+    ],
+    "collaboration": true,
+    "versionControl": "Blockchain immutability with timestamp tracking",
+    "storageMethod": "On-chain Arkiv with RLP encoding"
+  },
+  "security": {
+    "encryption": "Client-side encryption with CryptoJS",
+    "walletSigning": "MetaMask transaction signing",
+    "privateKeyManagement": "Environment variable isolation",
+    "accessControl": "Multi-modal authentication system",
+    "blockchainSecurity": "Cryptographic immutability via Arkiv"
+  },
+  "metrics": {
+    "reqPerDay": 2000,
+    "p95ms": 850,
+    "storageMB": 512,
+    "maxDiagramSize": 131072,
+    "avgSessionDuration": "15min",
+    "testSuccessRate": "80%"
+  },
+  "deployment": {
+    "frontend": "Docker with custom DrawIO build on port 8900",
+    "backend": "Docker with Bun runtime on port 8899",
+    "domain": "drawiodb.online",
+    "ssl": "nginx-proxy-manager with Let's Encrypt",
+    "networking": "Custom Docker network (moon_golem_network)",
+    "reverseProxy": "nginx-proxy-manager for SSL termination"
+  },
+  "userExperience": {
+    "responsive": true,
+    "darkTheme": false,
+    "dragAndDrop": true,
+    "realTimeSync": true,
+    "offlineMode": false,
+    "shareableLinks": true,
+    "searchFiltering": true,
+    "configurationUI": true
+  },
+  "blockchainIntegration": {
+    "network": "Golem Holesky Testnet",
+    "consensusMechanism": "Proof of Stake",
+    "transactionSigning": "MetaMask or backend private key",
+    "storageModel": "Entity-based with annotations",
+    "queryCapabilities": "Title, author, content, timestamp filtering",
+    "immutability": "Permanent on-chain storage"
+  },
+  "screens": [
+    "/images/drawiodb/drawiodb- 2025-09-23 o 09.46.22.png",
+    "/images/drawiodb/drawiodb- 2025-09-23 o 09.46.57.png",
+    "/images/drawiodb/drawiodb- 2025-09-23 o 09.47.05.png",
+    "/images/drawiodb/drawiodb- 2025-09-23 o 09.47.35.png",
+    "/images/drawiodb/drawiodb- 2025-09-23 o 09.47.44.png",
+    "/images/drawiodb/drawiodb- 2025-09-23 o 09.48.47.png"
+  ],
+  "createdAt": "2025-09-22T15:00:00.000Z",
+  "updatedAt": "2025-09-23T05:45:13.257Z",
+  "openSource": true,
+  "license": "MIT"
+}

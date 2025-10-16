@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Arkiv Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* Arkiv Design System Colors */
+:root {
+  /* Orange palette */
+  --orange-50: #fff1ec;
+  --orange-100: #ffd4c5;
+  --orange-200: #ffbfa9;
+  --orange-300: #fea282;
+  --orange-400: #fe906a;
+  --orange-500: #fe7445;
+  --orange-600: #e76a3f;
+  --orange-700: #b45231;
+  --orange-800: #8c4026;
+  --orange-900: #6b311d;
+
+  /* Grey palette */
+  --grey-50: #ededed;
+  --grey-100: #c7c7c7;
+  --grey-200: #acacac;
+  --grey-300: #868686;
+  --grey-400: #6e6e6e;
+  --grey-500: #4a4a4a;
+  --grey-600: #434343;
+  --grey-700: #353535;
+  --grey-800: #292929;
+  --grey-900: #1f1f1f;
+
+  /* Semantic colors - Light mode */
+  --bg: #ffffff;
+  --surface: var(--grey-50);
+  --border: var(--grey-200);
+  --text: var(--grey-900);
+  --muted: var(--grey-500);
+  --primary: var(--orange-500);
+}
+
+.dark {
+  /* Semantic colors - Dark mode */
+  --bg: var(--grey-900);
+  --surface: var(--grey-800);
+  --border: var(--grey-700);
+  --text: var(--grey-50);
+  --muted: var(--grey-400);
+  --primary: var(--orange-400);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Arkiv Typography Scale */
+.title-62 { font-size: 62px; line-height: 74px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; }
+.title-48 { font-size: 48px; line-height: 58px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; }
+.title-40 { font-size: 40px; line-height: 48px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; }
+.title-32 { font-size: 32px; line-height: 38px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; }
+.title-24 { font-size: 24px; line-height: 28px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; }
+.title-20 { font-size: 20px; line-height: 24px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; }
+
+.body-20 { font-size: 20px; line-height: 28px; font-weight: 400; }
+.body-16 { font-size: 16px; line-height: 22px; font-weight: 400; }
+.body-14 { font-size: 14px; line-height: 20px; font-weight: 400; }
+.body-12 { font-size: 12px; line-height: 16px; font-weight: 400; }
+
+.container {
+  @apply max-w-7xl mx-auto px-5;
+}
+
+.card {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--surface);
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+kbd {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+code, pre {
+  font-family: 'IBM Plex Mono', monospace;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+pre {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  background: var(--border);
+  color: var(--text);
+}

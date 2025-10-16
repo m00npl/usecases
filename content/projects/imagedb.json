@@ -1,0 +1,179 @@
+{
+  "title": "ImageDB",
+  "slug": "imagedb",
+  "tagline": "Image chunking middleware for Arkiv - splits large images into safe-sized chunks and stores them on decentralized storage.",
+  "description": "A middleware service that automatically chunks large images into 64KB pieces, stores them on Arkiv with integrity verification, and serves them back as complete files. Perfect for NFT images, app assets, and any use case requiring decentralized image storage without protocol limitations.",
+  "category": [
+    "data-infra",
+    "media-storage",
+    "middleware"
+  ],
+  "status": "live",
+  "liveUrl": "https://imagedb.online/",
+  "repoUrl": "https://github.com/m00npl/imagedb",
+  "chains": [
+    "arkiv-holesky"
+  ],
+  "usesGolemDb": {
+    "annotations": true,
+    "btl": true,
+    "query": true,
+    "pow": false
+  },
+  "golemDetails": "ImageDB stores image chunks as individual Arkiv entities with string annotations including media_id, chunk_index, and SHA-256 checksums. Uses BTL (blocks to live) for automatic expiration and supports querying chunks by owner for reassembly. Each chunk is stored with expiration_block for deterministic cleanup. Uses Golem Base SDK with proper account authentication for write operations.",
+  "features": [
+    "Upload images up to 25MB with automatic chunking",
+    "SHA-256 integrity verification for all chunks",
+    "Idempotent uploads with session management",
+    "JavaScript SDK for easy integration",
+    "Interactive web demo with real-time upload",
+    "Configurable BTL management (default 7 days)",
+    "Rate limiting and quota enforcement",
+    "PNG and JPEG format support",
+    "Chunk reassembly with integrity validation",
+    "RESTful API with comprehensive documentation"
+  ],
+  "sampleCode": {
+    "lang": "ts",
+    "code": "// Upload image with ImageDB SDK\nimport ImageDB from './imagedb-sdk.js';\n\nconst client = new ImageDB('https://imagedb.online');\n\n// Upload with options\nconst result = await client.upload(file, {\n  idempotencyKey: 'unique-key-123',\n  ttlDays: 30\n});\n\nconsole.log('Media ID:', result.media_id);\n\n// Retrieve image\nconst imageBlob = await client.get(result.media_id);\nconst imageUrl = URL.createObjectURL(imageBlob);\n\n// Check quota\nconst quota = await client.getQuota();"
+  },
+  "techStack": {
+    "frontend": [
+      "Vanilla JavaScript",
+      "Tailwind CSS",
+      "Prism.js syntax highlighting",
+      "HTML5 File API",
+      "Fetch API",
+      "Modern CSS Grid/Flexbox"
+    ],
+    "backend": [
+      "Bun runtime",
+      "Hono framework",
+      "TypeScript",
+      "Golem Base SDK",
+      "Sharp image processing",
+      "Crypto module for SHA-256"
+    ],
+    "storage": [
+      "Arkiv Holesky testnet",
+      "Golem Base SDK integration",
+      "64KB chunk optimization",
+      "Entity storage with string annotations",
+      "Base64 encoding for binary data",
+      "SHA-256 checksums",
+      "WebSocket connection for real-time operations"
+    ],
+    "infra": [
+      "Docker containerization",
+      "Docker Compose orchestration",
+      "Nginx Proxy Manager",
+      "Cloudflare SSL termination",
+      "GitHub Container Registry"
+    ]
+  },
+  "apiEndpoints": [
+    {
+      "method": "POST",
+      "path": "/media",
+      "description": "Upload image file with automatic chunking"
+    },
+    {
+      "method": "GET",
+      "path": "/media/:media_id",
+      "description": "Retrieve complete image by media ID"
+    },
+    {
+      "method": "GET",
+      "path": "/quota",
+      "description": "Check current quota usage and limits"
+    },
+    {
+      "method": "GET",
+      "path": "/status/:idempotency_key",
+      "description": "Check upload session status and progress"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "description": "Service health check endpoint"
+    },
+    {
+      "method": "GET",
+      "path": "/sdk/imagesdb-sdk.js",
+      "description": "Download JavaScript SDK (2KB)"
+    }
+  ],
+  "fileSupport": {
+    "maxSize": "25MB",
+    "supportedTypes": "PNG, JPEG image formats",
+    "chunkSize": "64KB per chunk",
+    "integrityCheck": true,
+    "storageMethod": "Arkiv entities with metadata"
+  },
+  "security": {
+    "checksumValidation": "SHA-256 for individual chunks and complete files",
+    "quotaEnforcement": "100MB storage limit, 10 uploads per day (free tier)",
+    "fileValidation": "MIME type and size validation",
+    "ttlManagement": "Automatic expiration via Arkiv BTL",
+    "idempotencyProtection": "Prevents duplicate chunk uploads",
+    "privateKeyAuth": "Golem Base SDK account authentication for write operations",
+    "dataIntegrity": "Verified upload/download cycle with byte-perfect reassembly"
+  },
+  "metrics": {
+    "reqPerDay": 2000,
+    "p95ms": 500,
+    "storageMB": 2048,
+    "maxFileSize": 26214400,
+    "avgChunkCount": 400,
+    "chunkSize": 65536
+  },
+  "deployment": {
+    "application": "Docker container on internal network",
+    "proxy": "Nginx Proxy Manager with SSL termination",
+    "domain": "imagedb.online",
+    "ssl": "Let's Encrypt via Nginx Proxy Manager",
+    "storage": "Arkiv Holesky testnet (https://kaolin.hoodi.arkiv.network/rpc)",
+    "network": "Docker internal network (moon_golem_network)",
+    "endpoints": {
+      "rpc": "https://kaolin.hoodi.arkiv.network/rpc",
+      "websocket": "wss://https://kaolin.hoodi.arkiv.network/rpc/ws"
+    }
+  },
+  "userExperience": {
+    "responsive": true,
+    "darkTheme": false,
+    "filePreview": true,
+    "dragAndDrop": true,
+    "progressIndicator": true,
+    "integrityFeedback": true,
+    "quotaMonitoring": true,
+    "sdkDownload": true
+  },
+  "chunking": {
+    "algorithm": "Fixed 64KB chunks with metadata",
+    "storage": "Arkiv entities with string annotations",
+    "metadata": {
+      "media_id": "UUID for grouping chunks",
+      "chunk_index": "Sequential numbering",
+      "checksum": "SHA-256 per chunk",
+      "expiration_block": "BTL-based automatic expiration",
+      "content_type": "Original MIME type",
+      "type": "Annotation: image_chunk or image_metadata"
+    },
+    "reassembly": "Query by owner address, filter by media_id, sort by chunk_index",
+    "cleanup": "Automatic via Arkiv BTL (Blocks To Live)",
+    "integrity": "Full file SHA-256 validation after reassembly"
+  },
+  "screens": [
+    "/images/imagedb/imagedb-2025-09-22 o 21.23.19.png",
+    "/images/imagedb/imagedb-2025-09-22 o 21.23.34.png",
+    "/images/imagedb/imagedb-2025-09-22 o 21.23.50.png",
+    "/images/imagedb/imagedb-2025-09-22 o 21.24.02.png",
+    "/images/imagedb/imagedb-2025-09-22 o 21.24.15.png",
+    "/images/imagedb/imagedb-main-2025-09-23T05-45-18.png"
+  ],
+  "createdAt": "2025-09-21T16:00:00.000Z",
+  "updatedAt": "2025-09-23T05:45:23.445Z",
+  "openSource": true,
+  "license": "MIT"
+}
