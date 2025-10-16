@@ -1,6 +1,6 @@
 # Built with Arkiv — Portfolio Starter
 
-Next.js (App Router) + Tailwind starter to showcase projects using **Golem DB**.
+Next.js (App Router) + Tailwind starter to showcase projects using **Arkiv**.
 
 ## Quick start
 ```bash
