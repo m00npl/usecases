@@ -11,7 +11,7 @@
   "chains": [
     "ethereum"
   ],
-  "usesGolemDb": {
+  "usesArkiv": {
     "storage": true,
     "annotations": true
   },

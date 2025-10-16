@@ -42,7 +42,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
 
           {project.sampleCode && (
             <div className="mt-6">
-              <h3 className="font-semibold mb-2">How it uses Golem DB</h3>
+              <h3 className="font-semibold mb-2">How it uses Arkiv</h3>
               <CodeBlock lang={project.sampleCode.lang} code={project.sampleCode.code} />
             </div>
           )}
@@ -56,9 +56,9 @@ export default async function ProjectDetail({ params }: { params: { slug: string
 
         <aside className="card p-6 space-y-5">
           <section>
-            <h3 className="font-semibold">Golem DB Features</h3>
+            <h3 className="font-semibold">Arkiv Features</h3>
             <div className="mt-2 flex flex-wrap gap-2">
-              {(['annotations','btl','query','pow','storage'] as const).filter((k)=>project.usesGolemDb?.[k]).map((feature) => (
+              {(['annotations','btl','query','pow','storage'] as const).filter((k)=>project.usesArkiv?.[k]).map((feature) => (
                 <span key={feature} className="badge">arkiv:{feature}</span>
               ))}
             </div>
@@ -87,7 +87,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
           )}
 
           <section className="text-sm text-slate-500 dark:text-neutral-400">
-            <p>Built with <Link href="/" className="underline">Golem DB</Link>. Submit improvements via PRs or the submit form.</p>
+            <p>Built with <Link href="/" className="underline">Arkiv</Link>. Submit improvements via PRs or the submit form.</p>
           </section>
         </aside>
       </div>

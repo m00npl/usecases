@@ -14,7 +14,7 @@
   "chains": [
     "arkiv-holesky"
   ],
-  "usesGolemDb": {
+  "usesArkiv": {
     "annotations": false,
     "btl": false,
     "query": false,

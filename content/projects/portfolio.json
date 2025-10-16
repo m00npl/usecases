@@ -14,7 +14,7 @@
   "chains": [
     "arkiv-holesky"
   ],
-  "usesGolemDb": {
+  "usesArkiv": {
     "annotations": true,
     "btl": true,
     "query": true,
@@ -84,7 +84,7 @@
       "description": "Project submission helper page"
     }
   ],
-  "golemDbIntegration": {
+  "arkivIntegration": {
     "chainId": 60138453025,
     "rpcUrl": "https://kaolin.hoodi.arkiv.network/rpc",
     "wsUrl": "wss://https://kaolin.hoodi.arkiv.network/rpc/ws",

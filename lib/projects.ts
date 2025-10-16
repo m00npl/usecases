@@ -11,7 +11,7 @@ export interface Project {
   liveUrl?: string
   repoUrl?: string
   chains: string[]
-  usesGolemDb: Partial<Record<"annotations"|"btl"|"pow"|"query"|"storage", boolean>>
+  usesArkiv: Partial<Record<"annotations"|"btl"|"pow"|"query"|"storage", boolean>>
   golemDetails: string
   sampleCode?: { lang: "ts"|"js"|"sql"|"json", code: string }
   techStack: { frontend: string[], backend: string[], identity?: string[], infra?: string[] }
@@ -39,18 +39,18 @@ export async function getAllProjects(): Promise<Project[]> {
 
   console.log('🔄 Loading projects...')
 
-  // Spróbuj pobrać z Golem DB
+  // Spróbuj pobrać z Arkiv
   try {
     const { golemStorage } = await import("./golem-storage")
     const golemProjects = await golemStorage.getAllProjects()
     if (golemProjects.length > 0) {
-      console.log('✅ Loaded projects from Golem DB')
+      console.log('✅ Loaded projects from Arkiv')
       const projects = golemProjects.map(p => p.data).sort((a,b)=> (b.createdAt||"").localeCompare(a.createdAt||""))
       await cache.set(cacheKey, projects)
       return projects
     }
   } catch (error) {
-    console.warn('⚠️ Failed to load from Golem DB, falling back to local files:', error)
+    console.warn('⚠️ Failed to load from Arkiv, falling back to local files:', error)
   }
 
   // Fallback do lokalnych plików

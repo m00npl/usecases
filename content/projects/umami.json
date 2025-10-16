@@ -14,7 +14,7 @@
   "chains": [
     "arkiv-holesky"
   ],
-  "usesGolemDb": {
+  "usesArkiv": {
     "annotations": true,
     "btl": true,
     "query": true,
@@ -53,7 +53,7 @@
       "Node.js runtime",
       "Prisma ORM",
       "PostgreSQL database",
-      "Golem Base SDK"
+      "Arkiv SDK"
     ],
     "identity": [
       "Built-in user authentication",

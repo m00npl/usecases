@@ -15,7 +15,7 @@
   "chains": [
     "arkiv-holesky"
   ],
-  "usesGolemDb": {
+  "usesArkiv": {
     "annotations": true,
     "btl": false,
     "query": true,
@@ -50,7 +50,7 @@
       "Bun runtime",
       "Hono framework",
       "TypeScript",
-      "Golem Base SDK",
+      "Arkiv SDK",
       "Ethers.js",
       "Crypto-JS",
       "CORS middleware"

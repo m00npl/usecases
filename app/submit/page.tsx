@@ -48,7 +48,7 @@ export default function SubmitPage(){
         liveUrl: data.liveUrl || undefined,
         repoUrl: data.repoUrl || undefined,
         chains: ["arkiv-holesky"],
-        usesGolemDb: { annotations:true, btl:true, query:true },
+        usesArkiv: { annotations:true, btl:true, query:true },
         golemDetails: "Describe how you use Arkiv features here.",
         sampleCode: { lang:"ts", code: "// paste sample code" },
         techStack: { frontend:["Next.js"], backend:["Node"], identity:["Web3"], infra:["Arkiv"] },

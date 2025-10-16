@@ -21,7 +21,7 @@ export function ProjectCard({ project }: ProjectCardProps){
         <h3 className="title-20 mb-2"><Link href={`/${project.slug}`} style={{color: 'var(--text)'}}>{project.title}</Link></h3>
         <p className="body-14 mb-4" style={{color: 'var(--muted)'}}>{project.tagline}</p>
         <div className="flex items-center gap-2 flex-wrap mb-4">
-          {(['annotations','btl','query','pow','storage'] as const).filter((k)=>project.usesGolemDb?.[k]).map((feature) => (
+          {(['annotations','btl','query','pow','storage'] as const).filter((k)=>project.usesArkiv?.[k]).map((feature) => (
             <span key={feature} className="badge">arkiv:{feature}</span>
           ))}
           {project.chains?.map((ch:string)=>(<span key={ch} className="badge">{ch}</span>))}

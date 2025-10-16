@@ -36,7 +36,7 @@ class GolemStorage {
           data: Buffer.from(process.env.GOLEM_DB_PRIVATE_KEY.slice(2), 'hex')
         }
         this.writeClient = await createClient(chainId, accountData, rpcUrl, wsUrl)
-        console.log('✅ Golem DB write client initialized')
+        console.log('✅ Arkiv write client initialized')
       } catch (error) {
         console.error('❌ Failed to initialize write client:', error)
       }
@@ -172,7 +172,7 @@ class GolemStorage {
     await this.initialized
 
     try {
-      console.log('🔍 Loading all projects from Golem DB')
+      console.log('🔍 Loading all projects from Arkiv')
 
       if (!this.writeClient) {
         console.warn('❌ Cannot retrieve all projects without write client')
@@ -220,7 +220,7 @@ class GolemStorage {
       }
 
       const projects = Array.from(projectsMap.values())
-      console.log('✅ Loaded', projects.length, 'projects from Golem DB')
+      console.log('✅ Loaded', projects.length, 'projects from Arkiv')
       return projects
     } catch (error) {
       console.error('❌ Failed to get all projects:', error)

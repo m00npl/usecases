@@ -14,13 +14,13 @@
   "chains": [
     "arkiv-holesky"
   ],
-  "usesGolemDb": {
+  "usesArkiv": {
     "annotations": true,
     "btl": true,
     "query": true,
     "pow": false
   },
-  "golemDetails": "ImageDB stores image chunks as individual Arkiv entities with string annotations including media_id, chunk_index, and SHA-256 checksums. Uses BTL (blocks to live) for automatic expiration and supports querying chunks by owner for reassembly. Each chunk is stored with expiration_block for deterministic cleanup. Uses Golem Base SDK with proper account authentication for write operations.",
+  "golemDetails": "ImageDB stores image chunks as individual Arkiv entities with string annotations including media_id, chunk_index, and SHA-256 checksums. Uses BTL (blocks to live) for automatic expiration and supports querying chunks by owner for reassembly. Each chunk is stored with expiration_block for deterministic cleanup. Uses Arkiv SDK with proper account authentication for write operations.",
   "features": [
     "Upload images up to 25MB with automatic chunking",
     "SHA-256 integrity verification for all chunks",
@@ -50,13 +50,13 @@
       "Bun runtime",
       "Hono framework",
       "TypeScript",
-      "Golem Base SDK",
+      "Arkiv SDK",
       "Sharp image processing",
       "Crypto module for SHA-256"
     ],
     "storage": [
       "Arkiv Holesky testnet",
-      "Golem Base SDK integration",
+      "Arkiv SDK integration",
       "64KB chunk optimization",
       "Entity storage with string annotations",
       "Base64 encoding for binary data",
@@ -116,7 +116,7 @@
     "fileValidation": "MIME type and size validation",
     "ttlManagement": "Automatic expiration via Arkiv BTL",
     "idempotencyProtection": "Prevents duplicate chunk uploads",
-    "privateKeyAuth": "Golem Base SDK account authentication for write operations",
+    "privateKeyAuth": "Arkiv SDK account authentication for write operations",
     "dataIntegrity": "Verified upload/download cycle with byte-perfect reassembly"
   },
   "metrics": {

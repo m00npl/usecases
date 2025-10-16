@@ -3,7 +3,7 @@ import path from 'path'
 import { golemStorage } from '../lib/golem-storage'
 
 async function migrateProjectsToGolem(force: boolean = false) {
-  console.log('🚀 Starting migration to Golem DB...')
+  console.log('🚀 Starting migration to Arkiv...')
   if (force) {
     console.log('⚠️ Force mode enabled - will overwrite existing projects')
   }
@@ -56,12 +56,12 @@ async function migrateProjectsToGolem(force: boolean = false) {
         project.screens = newScreens
       }
 
-      // 2. Check if project already exists in Golem DB
+      // 2. Check if project already exists in Arkiv
       console.log(`🔍 Checking if project exists: ${project.slug}`)
       const existingProject = await golemStorage.getProject(project.slug)
 
       if (existingProject && !force) {
-        console.log(`📋 Project ${project.slug} already exists in Golem DB, skipping...`)
+        console.log(`📋 Project ${project.slug} already exists in Arkiv, skipping...`)
         console.log(`   Last updated: ${existingProject.updatedAt}`)
         console.log(`   Use --force flag to overwrite existing projects`)
         continue
@@ -69,7 +69,7 @@ async function migrateProjectsToGolem(force: boolean = false) {
         console.log(`🔄 Project ${project.slug} exists, but force mode enabled - will update`)
       }
 
-      // 3. Store project data in Golem DB
+      // 3. Store project data in Arkiv
       console.log(`💾 Storing new project data for: ${project.slug}`)
       const entityKey = await golemStorage.storeProject(project.slug, project)
 
@@ -83,7 +83,7 @@ async function migrateProjectsToGolem(force: boolean = false) {
     }
 
     console.log('\n🎉 Migration completed!')
-    console.log('💡 Set GOLEM_DB_PRIVATE_KEY environment variable to enable Golem DB storage')
+    console.log('💡 Set GOLEM_DB_PRIVATE_KEY environment variable to enable Arkiv storage')
 
   } catch (error) {
     console.error('❌ Migration failed:', error)

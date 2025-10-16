@@ -11,7 +11,7 @@ export function ProjectGallery({ initial }: { initial: any[] }){
     return initial.filter(p=>{
       const matchesQ = query ? (p.title.toLowerCase().includes(query.toLowerCase()) || p.tagline.toLowerCase().includes(query.toLowerCase())) : true
       const matchesC = category ? p.category?.includes(category) : true
-      const matchesF = features.length ? features.every(f=>p.usesGolemDb?.[f]) : true
+      const matchesF = features.length ? features.every(f=>p.usesArkiv?.[f]) : true
       return matchesQ && matchesC && matchesF
     })
   }, [initial, query, category, features])
