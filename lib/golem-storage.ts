@@ -1,4 +1,4 @@
-import { createROClient, createClient } from 'golem-base-sdk'
+import { createROClient, createClient } from 'arkiv-sdk'
 
 export interface ProjectData {
   projectId: string
