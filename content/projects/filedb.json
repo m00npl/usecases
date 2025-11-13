@@ -12,7 +12,7 @@
   "liveUrl": "https://filedb.online/",
   "repoUrl": "https://github.com/m00npl/filedb",
   "chains": [
-    "arkiv-holesky"
+    "arkiv-kaolin"
   ],
   "usesArkiv": {
     "annotations": false,

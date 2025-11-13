@@ -12,7 +12,7 @@
   "liveUrl": "https://imagedb.online/",
   "repoUrl": "https://github.com/m00npl/imagedb",
   "chains": [
-    "arkiv-holesky"
+    "arkiv-kaolin"
   ],
   "usesArkiv": {
     "annotations": true,
@@ -55,7 +55,7 @@
       "Crypto module for SHA-256"
     ],
     "storage": [
-      "Arkiv Holesky testnet",
+      "Arkiv Kaolin testnet",
       "Arkiv SDK integration",
       "64KB chunk optimization",
       "Entity storage with string annotations",
@@ -132,7 +132,7 @@
     "proxy": "Nginx Proxy Manager with SSL termination",
     "domain": "imagedb.online",
     "ssl": "Let's Encrypt via Nginx Proxy Manager",
-    "storage": "Arkiv Holesky testnet (https://kaolin.hoodi.arkiv.network/rpc)",
+    "storage": "Arkiv Kaolin testnet (https://kaolin.hoodi.arkiv.network/rpc)",
     "network": "Docker internal network (moon_golem_network)",
     "endpoints": {
       "rpc": "https://kaolin.hoodi.arkiv.network/rpc",

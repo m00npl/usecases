@@ -13,7 +13,7 @@
   "liveUrl": "https://drawiodb.online/",
   "repoUrl": "https://github.com/m00npl/drawiodb",
   "chains": [
-    "arkiv-holesky"
+    "arkiv-kaolin"
   ],
   "usesArkiv": {
     "annotations": true,
@@ -65,7 +65,7 @@
       "Docker containerization",
       "Multi-service architecture",
       "Nginx reverse proxy",
-      "Golem Holesky testnet",
+      "Golem Kaolin testnet",
       "SSL/TLS encryption"
     ]
   },
@@ -155,7 +155,7 @@
     "configurationUI": true
   },
   "blockchainIntegration": {
-    "network": "Golem Holesky Testnet",
+    "network": "Golem Kaolin Testnet",
     "consensusMechanism": "Proof of Stake",
     "transactionSigning": "MetaMask or backend private key",
     "storageModel": "Entity-based with annotations",

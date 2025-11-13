@@ -6,8 +6,8 @@
     "data-infra"
   ],
   "status": "demo",
-  "liveUrl": "https://example.com/demo/webdb",
-  "repoUrl": "https://github.com/example/webdb",
+  "liveUrl": "https://webdb.site/",
+  "repoUrl": "https://github.com/m00npl/webdb",
   "chains": [
     "ethereum"
   ],

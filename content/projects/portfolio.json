@@ -12,7 +12,7 @@
   "liveUrl": "https://usecases.arkiv.network",
   "repoUrl": "https://github.com/m00npl/usecases",
   "chains": [
-    "arkiv-holesky"
+    "arkiv-kaolin"
   ],
   "usesArkiv": {
     "annotations": true,
@@ -55,7 +55,7 @@
       "Buffer handling"
     ],
     "storage": [
-      "Arkiv Holesky testnet",
+      "Arkiv Kaolin testnet",
       "Local file cache",
       "ImageDB.online integration",
       "JSON fallback storage"

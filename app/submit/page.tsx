@@ -47,7 +47,7 @@ export default function SubmitPage(){
         status: "pending",
         liveUrl: data.liveUrl || undefined,
         repoUrl: data.repoUrl || undefined,
-        chains: ["arkiv-holesky"],
+        chains: ["arkiv-kaolin"],
         usesArkiv: { annotations:true, btl:true, query:true },
         golemDetails: "Describe how you use Arkiv features here.",
         sampleCode: { lang:"ts", code: "// paste sample code" },
