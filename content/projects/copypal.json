@@ -12,7 +12,7 @@
   "liveUrl": "https://copypal.online/",
   "repoUrl": "https://github.com/m00npl/copypal",
   "chains": [
-    "arkiv-holesky"
+    "arkiv-kaolin"
   ],
   "usesArkiv": {
     "annotations": false,
@@ -60,7 +60,7 @@
     "infra": [
       "Docker containerization",
       "Nginx static serving",
-      "Golem Holesky network",
+      "Golem Kaolin network",
       "Base64 file encoding"
     ]
   },

@@ -10,9 +10,9 @@
   ],
   "status": "live",
   "liveUrl": "https://umami.golemdb.io/",
-  "repoUrl": "https://github.com/umami-software/umami",
+  "repoUrl": "https://github.com/m00npl/umamidb",
   "chains": [
-    "arkiv-holesky"
+    "arkiv-kaolin"
   ],
   "usesArkiv": {
     "annotations": true,
@@ -65,7 +65,7 @@
       "PostgreSQL 15 Alpine",
       "Traefik reverse proxy",
       "Static file server",
-      "Golem Holesky network"
+      "Golem Kaolin network"
     ]
   },
   "apiEndpoints": [
